@@ -1,4 +1,4 @@
-module gin-framework/data
+module gin-framework/error-handle
 
 go 1.18
 

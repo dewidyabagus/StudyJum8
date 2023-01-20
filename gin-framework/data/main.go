@@ -66,6 +66,28 @@ func postUser1(ctx *gin.Context) {
 		},
 	)
 }
+
+// Binding data melalui struct
+func postUser2(ctx *gin.Context) {
+	// Mempersiapan wadah
+	var user User
+	if err := ctx.Bind(&user); err != nil {
+		ctx.JSON(
+			http.StatusBadRequest,
+			gin.H{"message": "Bad Request", "error": err.Error()},
+		)
+		return
+	}
+
+	ctx.JSON(
+		http.StatusOK,
+		gin.H{
+			"message": "permintaan sukses diproses",
+			"data":    user,
+		},
+	)
+}
+
 func main() {
 	r := gin.Default()
 
@@ -73,6 +95,7 @@ func main() {
 	r.GET("/users/:id", getUserWithID)
 	r.GET("/users/search", getUserWithQueryParams)
 	r.POST("/users", postUser1)
+	r.POST("/users/bind", postUser2)
 
 	r.Run(":8001")
 }

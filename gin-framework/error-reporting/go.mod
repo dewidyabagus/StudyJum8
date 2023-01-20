@@ -1,8 +1,12 @@
-module gin-framework/data
+module gin-framework/error-reporting
 
 go 1.18
 
-require github.com/gin-gonic/gin v1.8.2
+require (
+	github.com/gin-gonic/gin v1.8.2
+	github.com/go-errors/errors v1.4.2
+	github.com/slack-go/slack v0.12.1
+)
 
 require (
 	github.com/gin-contrib/sse v0.1.0 // indirect
@@ -10,7 +14,7 @@ require (
 	github.com/go-playground/universal-translator v0.18.0 // indirect
 	github.com/go-playground/validator/v10 v10.11.1 // indirect
 	github.com/goccy/go-json v0.10.0 // indirect
-	github.com/google/go-cmp v0.5.7 // indirect
+	github.com/gorilla/websocket v1.4.2 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
 	github.com/mattn/go-isatty v0.0.17 // indirect
