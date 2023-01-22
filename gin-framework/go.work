@@ -5,4 +5,5 @@ use (
 	./error-handle
 	./error-reporting
 	./started
+	./validator
 )
