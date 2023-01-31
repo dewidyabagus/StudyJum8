@@ -25,6 +25,9 @@ type Database struct {
 }
 
 func LoadConfigAPI(path string) *Api {
+	// Pengambilan env sistem
+	// os.Getenv("KEY")
+	// os.Setenv("KEY")
 	if path := strings.TrimSpace(path); path == "" {
 		path = "."
 	}

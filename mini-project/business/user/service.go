@@ -69,6 +69,14 @@ func (s *service) UserLogin(ctx context.Context, email, password string) (*Token
 	return &Token{Token: token}, nil
 }
 
+func (s *service) GetUserWithID(ctx context.Context, id uint64) (*User, error) {
+	return s.repository.GetUserWithID(ctx, id)
+}
+
+func (s *service) PutUserWithID(ctx context.Context, id uint64, user EditProfile) error {
+	return s.repository.PutUserWithID(ctx, id, user.toUser())
+}
+
 func (s *service) generateToken(user *User) (token string, err error) {
 	eJWT := jwt.NewWithClaims(
 		jwt.SigningMethodHS256,

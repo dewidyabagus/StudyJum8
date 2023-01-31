@@ -30,6 +30,23 @@ func (i *InsertUser) toUser() User {
 	}
 }
 
+type EditProfile struct {
+	Email     string `json:"email" binding:"email,max=100"`
+	FirstName string `json:"first_name" binding:"required,max=100"`
+	LastName  string `json:"last_name" binding:"required,max=100"`
+	Address   string `json:"address" binding:"required,max=200"`
+}
+
+func (e *EditProfile) toUser() User {
+	return User{
+		Email:     e.Email,
+		FirstName: e.FirstName,
+		LastName:  e.LastName,
+		Address:   e.Address,
+		UpdatedAt: time.Now(),
+	}
+}
+
 type User struct {
 	ID            uint64
 	Email         string

@@ -60,8 +60,34 @@ func (c *Controller) GetUser(ctx *gin.Context) {
 		return
 	}
 
-	ctx.JSON(http.StatusOK, gin.H{"message": "OK", "data": claims})
+	user, err := c.service.GetUserWithID(ctx, claims.ID)
+	if err != nil {
+		res.JSONErrorResponse(ctx, err)
+		return
+	}
+
+	res.JSONBasicData(ctx, http.StatusOK, "OK", toResponseProfile(user))
 }
 
-func (c *Controller) PutUser(ctx *gin.Context)        {}
+func (c *Controller) PutUser(ctx *gin.Context) {
+	claims, err := c.mid.ExtractJWTUser(ctx)
+	if err != nil {
+		res.JSONErrorResponse(ctx, err)
+		return
+	}
+
+	var editProfile user.EditProfile
+	if err := ctx.ShouldBind(&editProfile); err != nil {
+		res.JSONErrorResponse(ctx, err)
+		return
+	}
+
+	if err := c.service.PutUserWithID(ctx, claims.ID, editProfile); err != nil {
+		res.JSONErrorResponse(ctx, err)
+		return
+	}
+
+	res.JSONBasicResponse(ctx, http.StatusOK, "sukses memperbarui profile")
+}
+
 func (c *Controller) ChangePassword(ctx *gin.Context) {}

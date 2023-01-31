@@ -45,7 +45,7 @@ func main() {
 		gin.SetMode(gin.ReleaseMode)
 	}
 
-	r := gin.New()
+	r := gin.New() // gin.Default()
 
 	routing := &routes.HandlerConfig{
 		Config:      cfg,

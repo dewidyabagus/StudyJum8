@@ -33,4 +33,5 @@ func (h *HandlerConfig) CreateRouting(r *gin.Engine) {
 	// Group routing /v1 dengan auth JWT
 	v1JWTAuth := v1.Use(middlewares.JWTMiddlewareAuth(h.Config.JWTSecretKey))
 	v1JWTAuth.GET("/profile", h.User.GetUser)
+	v1JWTAuth.PUT("/profile", h.User.PutUser)
 }

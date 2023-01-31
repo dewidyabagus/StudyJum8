@@ -31,7 +31,7 @@ func NewAuthenticator(secretKey string) IAuthenticator {
 
 func (s *authenticator) ExtractJWTUser(ctx *gin.Context) (*token, error) {
 
-	user, ok := ctx.Get("user")
+	user, ok := ctx.Get("user") // Key user tidak langsung ada pada header request
 	if !ok {
 		return nil, business.NewErrUnauthorized("user token not found")
 	}
