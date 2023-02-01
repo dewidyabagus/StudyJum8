@@ -16,6 +16,7 @@ type dependencies struct {
 func (d *dependencies) Ping(ctx *gin.Context) {
 	var response = map[string]string{
 		"database": "down",
+		"time":     time.Now().Format(http.TimeFormat),
 	}
 
 	ctx1, cancel1 := context.WithTimeout(ctx, 10*time.Second)
